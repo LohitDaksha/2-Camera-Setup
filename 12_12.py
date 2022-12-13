@@ -46,9 +46,14 @@ while True:
             # mpDraw.draw_landmarks(frame1, handLms, mpHands.HAND_CONNECTIONS)
 
     # (coordinates_info.landmark[mp_hands.HandLandmark.WRIST].x * img_width, coordinates_info.landmark[mp_hands.HandLandmark.WRIST].y * img_height)
-    
-    print('Coordinates from camera 0 = ({}, {})'.format(cx_0, cy_0))
-    print('Coordinates from camera 1 = ({}, {})'.format(cx_1, cy_1))
+    if(cx_0&cx_1&cy_0&cy_1):
+        print('Coordinates from camera 0 = ({}, {})'.format(cx_0, cy_0))
+        print('Coordinates from camera 1 = ({}, {})'.format(cx_1, cy_1))
+
+        c1 = np.array([cx_0, cy_0])
+        c2 = np.array([cx_1, cy_1])
+
+        print('L1 norm = {} \tL2 norm = {}\n\n'.format(np.linalg.norm(c1-c2,1), np.linalg.norm(c1-c2,2)))
 
     if (ret0):
         # Display the resulting frame
